@@ -1,0 +1,32 @@
+@contact
+Feature:  contactussubmit
+	Submit details in contactus form
+	
+Background:
+	Given I access webdriveruniversity
+	And I click on the contact us button
+	And I enter firstname
+	And I enter surname
+	
+	@TCID1
+Scenario: Submit information using the contact us form
+	And I enter email address
+	And I enter comments
+	When I click on the submit button
+	Then the information should be successfully be submitted via the contact us form
+	
+	@TCID2
+Scenario: Submit an invalid email address using the contact us form
+	And I enter an invalid email address
+	And I enter comments
+	When I click on the submit button
+	Then an error message should be seen
+	
+	@TCID7
+Scenario: Submit multiple comments
+	And I enter email address
+	And I enter comments
+	| Example comment one | Example comment two |
+	When I click on the submit button
+	Then an error message should be seen
+	

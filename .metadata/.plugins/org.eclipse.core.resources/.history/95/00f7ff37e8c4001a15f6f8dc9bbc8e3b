@@ -1,0 +1,14 @@
+@contact
+Feature:  contactusreset
+	reset details in contactus form
+
+@TCID3
+Scenario: Submit information using the contact us form and then reset the form
+	Given I access webdriveruniversity
+	And I click on the contact us button
+	And I enter firstname
+	And I enter surname
+	And I enter email address
+	And I enter comments
+	When I click on the reset button
+	Then the information should be removed	

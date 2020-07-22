@@ -1,0 +1,35 @@
+Feature: Homepage
+
+#Valid username and incorrect password
+#invalid username and a valid password
+#invalid username and invalid password
+#valid username and no password
+#no username and valid password
+#no username or password
+#lost your password goes to password reset page
+#remember me works when ticked and not vice versa
+#view password icon displays the password
+#validation rules are applied for usernames and passwords
+
+#Scenario: Login with a valid username and password
+#	Given I enter "matt.miller@mqmsolutions.com" as my username
+#	And I enter "hunky123!" as my password
+#	And I click register button
+#	And I click login button after entering login details
+#    Then I should see an error message
+    
+    
+Scenario: Login with a valid username and invalid password
+	Given I enter "matt.miller@mqmsolutions.com" as my username
+	And I enter "invalid" as my password
+	And I click login button after entering login details
+    Then I should see a bad password error message
+    
+    
+    
+# Scenario: Login with a valid username and password
+#	Given I enter "matt.miller@mqmsolutions.com" as my username
+#	And I enter "hunky123!" as my password
+#	And I click register button
+#	And I click login button after entering login details
+#    Then I should see an error message

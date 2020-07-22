@@ -1,0 +1,26 @@
+package testcases;
+
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+
+import pages.HomePage;
+
+public class HomePageTest {
+	
+	static HomePage page;
+	static WebDriver driver;
+
+	public static void main(String[] args) {
+
+		test_login();
+	}
+
+	public static void test_login() throws StaleElementReferenceException {
+		page = new HomePage(driver);
+		page.enterUsername("matt.miller@mqmsolutions.com");
+		page.enterPassword("hunky123!");
+		page.pressLoginButton();
+
+
+	}
+}

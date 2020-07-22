@@ -1,0 +1,7 @@
+Feature: Homepage
+
+
+Scenario: Login with a valid username and password
+	Given I enter "matt.miller@mqmsolutions.com" as my username
+	And I enter "hunky123!" as my password
+	And I click login button after entering login details

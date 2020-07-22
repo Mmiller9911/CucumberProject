@@ -1,0 +1,25 @@
+package stepDefinitions;
+
+import org.openqa.selenium.By;
+
+import cucumber.api.java.en.Given;
+import utils.DriverFactory;
+
+public class StackOverflowSteps extends DriverFactory {
+	@Given("^the user presses the login button on the home page$")
+	public void the_user_presses_the_login_button_on_the_home_page() throws Throwable {
+		//driver.findElement(By.linkText("Log in"));
+		driver.findElement(By.xpath("//a[contains(text(), 'Log in')]")).click();
+		
+	}
+	
+	@Given("^the user enters a valid username$")
+	public void the_user_enters_a_valid_username() throws Throwable {
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("mmiller9911@gmail.com");
+	}
+
+	@Given("^the user enters a valid password$")
+	public void the_user_enters_a_valid_password() throws Throwable {
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("nK&Q58_-5$AkX4t");
+	}
+}

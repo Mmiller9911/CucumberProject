@@ -1,0 +1,28 @@
+package steps;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Given;
+import pages.DriverFactory;
+
+
+public class HomePageSteps extends DriverFactory {
+	
+	//public WebDriver driver;
+	
+	@Given("^I enter \"([^\"]*)\" as my username$")
+	public void i_enter_login_username(String username) throws IOException {
+		homePage.enterUsername(username);
+	}
+	@Given("^I enter \"([^\"]*)\" as my password$")
+	public void i_enter_login_password(String password) throws IOException {
+		homePage.enterUsername(password);
+	}
+	@Given("^I click login button after entering login details$")
+	public void click_login_button() throws IOException {
+		homePage.pressLoginButton();
+	}
+
+}

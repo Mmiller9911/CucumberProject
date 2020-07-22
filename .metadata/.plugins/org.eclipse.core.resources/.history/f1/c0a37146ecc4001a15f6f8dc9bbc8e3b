@@ -1,0 +1,15 @@
+package stepDefinitions;
+
+import org.openqa.selenium.By;
+
+import cucumber.api.java.en.Given;
+import utils.DriverFactory;
+
+public class StackOverflowSteps extends DriverFactory {
+	@Given("^the user presses the login button on the home page$")
+	public void the_user_presses_the_login_button_on_the_home_page() throws Throwable {
+		//driver.findElement(By.linkText("Log in"));
+		driver.findElement(By.xpath("//a[contains(text(), 'Log in')]")).click();
+		
+	}
+}

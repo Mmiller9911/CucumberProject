@@ -1,0 +1,58 @@
+package pages;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class HomePage {
+    WebDriver driver;
+    
+    
+    //find all the web elements on the page
+    
+    
+    @FindBy(how = How.ID, using="username") //method one for getting elements
+    WebElement textfield_username;
+    
+    
+    
+	//public @FindBy(xpath = "//input[@id='username']") WebElement textfield_username;  //method two for getting elements
+	public @FindBy(xpath = "//input[@type='password']") WebElement textfield_password;
+	public @FindBy(xpath = "//button[@name='login']") WebElement login_button;
+//	public @FindBy(xpath = "//input[@id='rememberme'])") WebElement remember_me;
+//	public @FindBy(xpath = "//a[contains(text(),'Lost your password?')]") WebElement forgotten_password;
+//	public @FindBy(xpath = "//input[@id='reg_email']") WebElement textfield_register_username;
+//	public @FindBy(xpath = "//input[@id='reg_password']") WebElement textfield_register_password;
+//	public @FindBy(xpath = "//button[@name='register']") WebElement register_button;
+//	public @FindBy(xpath = "//a[contains(text(),'mystore')]") WebElement mystore_link;
+//	public @FindBy(xpath = "//ul[@class='nav-menu']//a[contains(text(),'Home')]") WebElement tab_home;
+//	public @FindBy(xpath = "//ul[@class='nav-menu']//a[contains(text(),'Cart')]") WebElement tab_cart;
+//	public @FindBy(xpath = "//ul[@class='nav-menu']//a[contains(text(),'Checkout')]") WebElement tab_checkout;
+//	public @FindBy(xpath = "//ul[@class='nav-menu']//a[contains(text(),'My account')]") WebElement tab_myaccount;
+//	public @FindBy(xpath = "//ul[@class='nav-menu']//a[contains(text(),'Sample Page')]") WebElement tab_sample;
+//	public @FindBy(xpath = "//nav[@class='woocommerce-breadcrumb']//a[contains(text(),'Home')]") WebElement home_icon;
+//	public @FindBy(xpath = "//a[@class='cart-contents']") WebElement shopping_basket;
+//	public @FindBy(xpath = "//input[@id='woocommerce-product-search-field-0']") WebElement search_dialog;
+    
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);  //init all the elements on the page when creating a new page object
+    }
+
+    public void enterUsername(String username) {
+    	textfield_username.sendKeys(username);
+    }
+    
+    public void enterPassword(String password) {
+    	textfield_password.sendKeys(password);
+    }
+
+    public void pressLoginButton() {
+    	login_button.click();
+    }
+
+    
+}

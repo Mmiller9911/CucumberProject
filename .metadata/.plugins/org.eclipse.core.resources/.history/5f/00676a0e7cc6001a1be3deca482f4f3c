@@ -1,0 +1,48 @@
+package pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class FirstTestWithTestNGFramework {
+	
+	WebDriver driver;
+
+	
+	@BeforeClass
+	public void setup() throws Exception {
+		System.setProperty("webdriver.chrome.driver","C:\\Mystore\\mystore\\src\\test\\java\\resources\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get("http://mystore.local/my-account/");
+		driver.manage().window().maximize();
+		
+	}
+	
+	@AfterTest
+	public void teardown() throws Exception {
+		driver.manage().deleteAllCookies();
+		driver.quit();
+		driver = null;
+	}
+	
+    WebElement textfield_username = driver.findElement(By.id("username"));
+    WebElement textfield_password = driver.findElement(By.xpath("//input[@type='password']"));
+    WebElement login_button = driver.findElement(By.xpath("//button[@name='login']"));
+    WebElement register_button = driver.findElement(By.xpath("//button[@name='register']"));
+	
+	@Test(description="User can log in with valid username and password")
+	public void validLogin() throws Exception{
+	  textfield_username.sendKeys("matt.miller@mqmsolutions.com");
+	  textfield_password.sendKeys("hunky123!");
+	  login_button.click();
+	  Thread.sleep(2000);
+	}
+}

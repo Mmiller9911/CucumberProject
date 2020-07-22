@@ -1,0 +1,41 @@
+package steps;
+
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+
+import pages.DriverFactory;
+import pages.HomePage;
+
+
+
+import java.io.IOException;
+import cucumber.api.DataTable;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import utils.DriverFactory;
+import java.util.List;
+import java.util.Set;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+
+public class HomePageSteps extends DriverFactory {
+	
+	@Given("^I enter \"([^\"]*)\" as my username$")
+	public void i_enter_login_username(String username) throws IOException {
+		homePage.enterUsername(username);
+	}
+	@Given("^I enter \"([^\"]*)\" as my password$")
+	public void i_enter_login_password(String password) throws IOException {
+		homePage.enterUsername(password);
+	}
+	@Given("^I click login button after entering login details$")
+	public void click_login_button() throws IOException {
+		homePage.pressLoginButton();
+	}
+
+}

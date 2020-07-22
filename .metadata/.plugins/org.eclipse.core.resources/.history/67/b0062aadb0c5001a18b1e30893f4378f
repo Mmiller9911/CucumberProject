@@ -1,0 +1,7 @@
+Feature: Homepage
+
+
+Scenario: Login with a valid username and password
+	Given I enter "" as my username
+	And I enter "" as my password
+	And I click login button after entering login details

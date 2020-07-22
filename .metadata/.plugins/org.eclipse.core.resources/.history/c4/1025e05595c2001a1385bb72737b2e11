@@ -1,0 +1,142 @@
+package CucumberProject.steps;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class ContactUsSteps {
+	
+	WebDriver driver;
+	
+	@Before()
+	public void setup() {
+		System.setProperty("webdriver.chromedriver.driver", "C:\\CucumberProject\\CucumberProject\\src\\test\\java\\CucumberProject\\resources\\chromedriver.exe");
+		this.driver = new ChromeDriver();
+		this.driver.manage().window().maximize();
+		//this.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+	}
+	
+	@After()
+	public void teardown() {
+		driver.close();
+	}
+
+	
+	@Given("^I access webdriveruniversity$")
+	public void i_access_webdriveruniversity() throws Throwable {
+		driver.get("http://www.webdriveruniversity.com/");
+	}
+
+	@Given("^I access webdriveruniversity login portal$")
+	public void i_access_webdriveruniversity_loginportal() throws Throwable {
+		driver.get("http://www.webdriveruniversity.com/Login-Portal/");
+	}
+	
+	@Given("^I click on the contact us button$")
+	public void i_click_on_the_contact_us_button() throws Throwable {
+		driver.findElement(By.xpath("//h1[contains(text(),'CONTACT US')]")).click();
+		
+	}
+
+	@Given("^I enter firstname$")
+	public void i_enter_firstname() throws Throwable {
+		
+		
+		String parentWindow = driver.getWindowHandle();   //get the current window and save to variable
+		Set<String> handles =  driver.getWindowHandles();  //get all open windows
+		   for(String windowHandle  : handles) // for each window in the set
+		       {
+		       if(!windowHandle.equals(parentWindow)) // if the window isn't the parent one
+		          {
+		         driver.switchTo().window(windowHandle);  //switch to it
+		         driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys("matthew");
+//		         driver.close(); //closing child window
+//		         driver.switchTo().window(parentWindow); //control to parent window
+		          }
+		}
+	}
+
+	@Given("^I enter surname$")
+	public void i_enter_surname() throws Throwable {
+		driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys("miller");
+	}
+
+	@Given("^I enter email address$")
+	public void i_enter_email_address() throws Throwable {
+		driver.findElement(By.xpath("//input[@placeholder='Email Address']")).sendKeys("mmiller9911@gmail.com");
+	}
+	
+	@Given("^I enter an invalid email address$")
+	public void i_enter_an_invalid_email_address() throws Throwable {
+		driver.findElement(By.xpath("//input[@placeholder='Email Address']")).sendKeys("invalid");
+	}
+
+	@Given("^I enter comments$")
+	public void i_enter_comments() throws Throwable {
+		driver.findElement(By.xpath("//textarea[@placeholder='Comments']")).sendKeys("is this finally working now?");
+	}
+
+	@When("^I click on the reset button$")
+	public void i_click_on_the_reset_button() throws Throwable {
+		driver.findElement(By.xpath("//div[@id='form_buttons']//input[1]")).click();
+	}
+
+	@Then("^the information should be removed$")
+	public void the_information_should_be_removed() throws Throwable {
+		WebElement firstname = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
+		WebElement surname = driver.findElement(By.xpath("//input[@placeholder='Last Name']"));
+		WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email Address']"));
+		WebElement comments = driver.findElement(By.xpath("//textarea[@placeholder='Comments']"));
+		String textInsideInputFirstname = firstname.getAttribute("value");
+		String textInsideInputSurname = surname.getAttribute("value");
+		String textInsideInputEmail = email.getAttribute("value");
+		String textInsideInputComments = comments.getAttribute("value");
+		Assert.assertTrue(textInsideInputFirstname.isEmpty());
+		Assert.assertTrue(textInsideInputSurname.isEmpty());
+		Assert.assertTrue(textInsideInputEmail.isEmpty());
+		Assert.assertTrue(textInsideInputComments.isEmpty());
+	}
+
+
+	@When("^I click on the submit button$")
+	public void i_click_on_the_submit_button() throws Throwable {
+		driver.findElement(By.xpath("//div[@id='form_buttons']//input[2]")).click();
+		
+	}
+	
+
+	@Then("^the information should be successfully be submitted via the contact us form$")
+	public void the_information_should_be_successfully_be_submitted_via_the_contact_us_form() throws Throwable {
+		WebElement successmessage = driver.findElement(By.xpath("//h1[contains(text(),'Thank You for your Message!')]"));
+		Assert.assertEquals(true, successmessage.isDisplayed()); 
+		
+	}
+	
+	@Then("^an error message should be seen$")
+	public void an_error_message_should_be_seen() throws Throwable {
+		System.out.println(driver.getPageSource());
+		Assert.assertTrue(driver.getPageSource().contains("Error: Invalid email address"));
+	}
+
+	
+	@Then("^the information should not be successfully be submitted via the contact us form$")
+	public void the_information_should_not_be_successfully_be_submitted_via_the_contact_us_form() throws Throwable {
+		WebElement failuremessage = driver.findElement(By.xpath("//h1[contains(text(),'Thank You for your Message!')]"));
+		Assert.assertEquals(true, failuremessage.isDisplayed()); 
+		
+	}
+}

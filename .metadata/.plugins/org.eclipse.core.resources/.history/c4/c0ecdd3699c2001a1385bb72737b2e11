@@ -1,0 +1,29 @@
+@login
+Feature:  Login
+	This feature covers all tests for logging into the site
+	another line
+	
+@TCID4
+Scenario:  Log in to the site with the correct credentials
+	Given user navigates to the stackoverflow website
+	And the user presses the login button on the home page
+	And the user enters a valid username
+	And the user enters a valid password
+	When the user presses the login button
+	Then the user should be taken to the successful log in page
+	
+	@TCID5
+Scenario:  Log in to the university site with correct password
+	Given I access webdriveruniversity login portal
+	And I enter my username
+	And I enter a "valid" password
+	Then I should get a successful alert
+	
+	@TCID6
+Scenario:  Attempt to log in to the university site with an incorrect password
+	Given I access webdriveruniversity login portal
+	And I enter my username
+	And I enter a "invalid" password
+	Then I should get a successful alert
+
+

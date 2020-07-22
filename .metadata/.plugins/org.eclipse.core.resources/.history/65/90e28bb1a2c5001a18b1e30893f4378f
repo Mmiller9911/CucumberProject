@@ -1,0 +1,5 @@
+Feature:  LoginPage
+
+Scenario: Enter some details
+	Given I enter a username of "Bob" into the login username field
+	And I enter a password of "Bob" into the login password field

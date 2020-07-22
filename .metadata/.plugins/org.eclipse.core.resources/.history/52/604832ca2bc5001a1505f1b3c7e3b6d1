@@ -1,0 +1,27 @@
+package steps;
+
+import java.io.IOException;
+
+import org.openqa.selenium.support.PageFactory;
+
+import pages.LoginPage;
+import utils.TestBase;
+
+
+import cucumber.api.java.en.Given;
+
+
+public class LoginPageSteps extends TestBase{
+	
+	@Given("^I enter a username of \"([^\"]*)\" into the login username field$")
+	public void i_enter_a_login_username(String username) throws Exception {
+		 this.enterLoginUserNameOrEmail(username);
+	}
+	
+	@Given("^I enter a password of \"([^\"]*)\" into the login password field$")
+	public void i_enter_a_login_password(String password) throws IOException {
+		this.i_enter_a_login_password(password);
+	}
+}
+	
+	

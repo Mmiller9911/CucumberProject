@@ -1,0 +1,14 @@
+Feature:  Login2
+	This feature covers all tests for logging into the site
+	another line
+	
+
+Scenario:  Log in to the site with the correct credentials2
+	Given user navigates to the stackoverflow website2
+	And the user presses the login button on the home page2
+	And the user enters a valid username2
+	And the user enters a valid password2
+	When the user presses the login button2
+	Then the user should be taken to the successful log in page2
+
+
