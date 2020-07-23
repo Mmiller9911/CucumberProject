@@ -29,20 +29,20 @@ public class ContactUsSteps extends DriverFactory {
 
 	@When("^I enter a valid last name$")
 	public void i_enter_a_valid_last_name(DataTable dataTable) throws Exception{
-		contactUsPage.enterLasttName(dataTable, 0, 1);
+		contactUsPage.enterLastName(dataTable, 0, 1);
 	}
 
-	@And("^i enter a valid email address$")
+	@And("^I enter a valid email address$")
 	public void i_enter_a_valid_email_address() throws Exception  {
 		contactUsPage.enterEmailAddress("webdriveruniversity@outlook.com");
 	}
 
-	@And("^i enter comments$")
+	@And("^I enter comments$")
 	public void i_enter_comments1(DataTable dataTable) throws Exception {
 		contactUsPage.enterComments(dataTable, 0, 1);
 	}
 
-	@When("^i click on the submit button$")
+	@When("^I click on the submit button$")
 	public void i_click_on_the_submit_button1() throws Exception {
 		contactUsPage.clickOnSubmiButton();
 	}
@@ -53,15 +53,15 @@ public class ContactUsSteps extends DriverFactory {
 	}
 	
 
-	@Given("^I enter my username$")
-	public void i_enter_my_username() throws Throwable {
-		driver.findElement(By.id("text")).sendKeys("Tom");
+	@Given("^I enter \"([^\"]*)\" as my username$")
+	public void i_enter_my_username(String username) throws Throwable {
+		driver.findElement(By.id("text")).sendKeys(username);
 	}
 
-	@Given("^I enter a \"([^\"]*)\" password$")
+	@Given("^I enter \"([^\"]*)\" as my password$")
 	public void i_enter_a_password(String password) throws Throwable {
-	    driver.findElement(By.id("password")).sendKeys(password);
-	}
+			driver.findElement(By.id("password")).sendKeys(password);
+		}    
 	
 	@Given("^I enter \"([^\"]*)\" as my login page username$")
 	public void i_enter_username(String arg1) throws Throwable {
@@ -77,7 +77,7 @@ public class ContactUsSteps extends DriverFactory {
 	
 	@Given("^I press the confirm button$")
 	public void i_press_confirm() throws Throwable {
-	    driver.findElement(By.id("login-button")).click();;
+	    driver.findElement(By.id("login-button")).click();
 	}
 
 	@Then("^I should get a \"([^\\\"]*)\" alert$")
@@ -170,13 +170,13 @@ public class ContactUsSteps extends DriverFactory {
 		Assert.assertTrue(textInsideInputComments.isEmpty());
 	}
 
-
+/*
 	@When("^I click on the submit button$")
 	public void i_click_on_the_submit_button() throws Throwable {
 		driver.findElement(By.xpath("//div[@id='form_buttons']//input[2]")).click();
 		
 	}
-	
+	*/
 
 	@Then("^the information should be successfully be submitted via the contact us form$")
 	public void the_information_should_be_successfully_be_submitted_via_the_contact_us_form() throws Throwable {

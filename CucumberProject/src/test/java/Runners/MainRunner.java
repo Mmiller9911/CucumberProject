@@ -19,7 +19,7 @@ import pageObjects.BasePage;
 		features= {"src/test/java/features/"}, //points to the feature file location
 		glue = {"stepDefinitions"}, //point to the step definitions
 		monochrome = true, //setting this to false makes the output less human readable
-		tags = {"@mrm"}, //which tags to run and not
+		tags = {"@all"}, //which tags to run and not
 		plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json", "com.cucumber.listener.ExtentCucumberFormatter:output/report.html"}
 		)
 

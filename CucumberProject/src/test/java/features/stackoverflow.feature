@@ -1,9 +1,9 @@
-@stack
+@stack @all
 Feature:  Stack Overflow site
 	This feature covers all tests for logging into the Stack Overflow site
 
 	
-@mrm
+@tcid10
 Scenario:  Log in to the site with the correct credentials
 	Given user navigates to the "https://stackoverflow.com/" website
 	And the user presses the login button on the home page
